@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "view for blog",
   "dependencies": {
+    "aliyun-api-gateway": "^1.1.4",
     "webpack": "^2.4.1"
   },
   "devDependencies": {
