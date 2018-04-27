@@ -11,7 +11,7 @@
 
         methods: {
             getArticle() {
-                var url = 'article/detail/100';
+                var url =  'article/detail/100';
                 this.$axios.get(url).then(function (response) {
                     console.log(response);
                 }).catch(function (response) {

@@ -40,8 +40,11 @@ const getToken =function () {
 
 
 axios.defaults.baseURL = 'http://localhost:8080';
-axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+// axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.interceptors.request.use(function (config) {
+    config.headers = {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
     if (!getToken()) {
         console.log('token error')
         return;
@@ -74,6 +77,8 @@ Vue.use(FormItem);
 Vue.use(Input);
 Vue.use(Dialog);
 Vue.use(Option);
+
+Vue.prototype.rootUrl = '/agent/';
 
 locale.use(lang);
 
