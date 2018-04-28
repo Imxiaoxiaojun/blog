@@ -4,6 +4,7 @@
   "description": "view for blog",
   "dependencies": {
     "aliyun-api-gateway": "^1.1.4",
+    "js-base64": "^2.4.3",
     "webpack": "^2.4.1"
   },
   "devDependencies": {

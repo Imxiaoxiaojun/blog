@@ -1,9 +1,9 @@
 <template>
     <div id="app">
-        <!--<Test></Test>-->
-        <IHeader></IHeader>
-        <IContainer></IContainer>
-        <IFoot></IFoot>
+        <Test></Test>
+        <!--<IHeader></IHeader>-->
+        <!--<IContainer></IContainer>-->
+        <!--<IFoot></IFoot>-->
     </div>
 </template>
 <script>
@@ -13,9 +13,7 @@
     import Test from './Test.vue'
     export default {
         name: 'app',
-        data: {
 
-        },
         components: {
            IHeader,IContainer,IFoot,Test
         },

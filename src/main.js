@@ -2,6 +2,7 @@
  * Created by gubaoer on 17/4/18.
  */
 
+
 import Vue from 'vue'
 import {
     Button,
@@ -26,35 +27,35 @@ import locale from 'element-ui/lib/locale'
 import moment from 'moment'
 import axios from 'axios'
 import curvejs from 'curvejs'
+let Base64 = require('js-base64').Base64;
 
 const getToken =function () {
-    const token = {'token':'test','expire':2019}
-    const date = new Date();
-    console.log(date.getDate())
-    if (token && token['token'] && token['expire'] > date.getFullYear()){
-        return token;
+    var cookie = window.document.cookie.match('(^|;) ?' + "TOKEN_COOKIE" + '=([^;]*)(;|$)');
+    console.log(cookie);
+    if (cookie){
+        return Base64.decode(cookie[2]['token']);
     }
-    return null;
-}
+    return '';
 
+}
 
 
 axios.defaults.baseURL = 'http://localhost:8080';
 // axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.interceptors.request.use(function (config) {
-    config.headers = {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-    if (!getToken()) {
-        console.log('token error')
-        return;
-    }
+    console.log("before request");
+    // config.headers = {
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //     // 'token': getToken()
+    // }
+    config.headers.Authorization = getToken();
     return config;
 }, function (error) {
     return Promise.reject(error);
 });
-axios.interceptors.response.use(function (response) {
 
+
+axios.interceptors.response.use(function (response) {
     return response;
 }, function (error) {
     return Promise.reject(error);
@@ -77,8 +78,6 @@ Vue.use(FormItem);
 Vue.use(Input);
 Vue.use(Dialog);
 Vue.use(Option);
-
-Vue.prototype.rootUrl = '/agent/';
 
 locale.use(lang);
 
