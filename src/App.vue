@@ -1,9 +1,9 @@
 <template>
     <div id="app">
-        <Test></Test>
-        <!--<IHeader></IHeader>-->
-        <!--<IContainer></IContainer>-->
-        <!--<IFoot></IFoot>-->
+        <!--<Test></Test>-->
+        <IHeader></IHeader>
+        <IContainer></IContainer>
+        <IFoot></IFoot>
     </div>
 </template>
 <script>
@@ -15,7 +15,8 @@
         name: 'app',
 
         components: {
-           IHeader,IContainer,IFoot,Test
+           IHeader,IContainer,IFoot,
+          Test
         },
 
     }
