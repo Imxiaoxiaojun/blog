@@ -56,7 +56,7 @@ compiler.plugin('compilation', function (compilation) {
 })
 
 
-// handle fallback for HTML5 history API
+// handler fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 
 // serve webpack bundle output
