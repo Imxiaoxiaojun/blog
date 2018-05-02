@@ -41,7 +41,12 @@
                         <div class="panel-body">
                             <div class="newContent">
                                 <ul class="list-unstyled sidebar shiplink">
+                                  <template v-for="link in links">
                                     <li>
+                                      <a :href="link.url" target="_blank">{{link.name | formatLinkName}}</a>
+                                    </li>
+                                  </template>
+                                   <!-- <li>
                                         <a href="https://www.baidu.com/" target="_blank">百度</a>
                                     </li>
                                     <li>
@@ -55,7 +60,7 @@
                                     </li>
                                     <li>
                                         <a href="http://www.qq.com/" target="_blank">腾讯网</a>
-                                    </li>
+                                    </li>-->
                                 </ul>
                             </div>
                         </div>
@@ -66,7 +71,7 @@
                             <h3 class="panel-title">关注微信公众号</h3>
                         </div>
                         <div class="panel-body">
-                            <img src="static/img/qrcode.jpg" style="height: 230.5px;width: 230.5px;" />
+                            <img src="static/img/wechatcode.jpg" style="height: 230.5px;width: 230.5px;" />
                         </div>
                     </div>
 
@@ -85,7 +90,37 @@
         components:{
             Banner,HotTag,Article,HotArticle
         },
+        data(){
+          return {
+            links: [],
+            apiUrl: 'api/links/list',
+            pageSize: '5',
+          }
+        },
+        mounted:function(){
+          this.getLinks();
+        },
         methods:{
+          getLinks: function () {
+            this.$axios.get(this.apiUrl,{
+              params: {
+                pageSize: this.pageSize,
+              }
+            }).then((response) => {
+              this.links = response.data.records;
+            }).catch(function (response) {
+              console.log(response)
+            });
+          }
+        },
+        filters:{
+          formatLinkName:function (name) {
+            console.log(name.length);
+            if (name.length > 20){
+              name = name.substr(0,20)+"...";
+            }
+            return name;
+          }
         }
     }
     // $(function() {
