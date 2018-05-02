@@ -47,10 +47,8 @@ const getToken = function () {
   var arr, reg = new RegExp("(^| )" + 'TOKEN_COOKIE' + "=([^;]*)(;|$)");
   if (arr = window.document.cookie.match(reg)) {
     // return Base64.decode(arr[2]);
-    console.log('token :' + arr[2]);
     return arr[2];
   } else {
-    console.log('token is null');
     return '';
   }
 }

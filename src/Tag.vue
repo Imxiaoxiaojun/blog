@@ -27,7 +27,6 @@
     },
     methods: {
       getList: function () {
-        console.log("getBanners");
         this.$axios.get(this.apiUrl).then((response) => {
           this.tags = response.data.records;
         }).catch(function (response) {

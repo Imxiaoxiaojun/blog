@@ -115,7 +115,6 @@
         },
         filters:{
           formatLinkName:function (name) {
-            console.log(name.length);
             if (name.length > 20){
               name = name.substr(0,20)+"...";
             }
