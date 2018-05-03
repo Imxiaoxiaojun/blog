@@ -8,6 +8,10 @@
                 <div class="col-lg-3 col-md-3 w_main_right">
 
                   <div class="panel panel-default sitetip">
+                    <a href="ArticleDetail.vue">
+                      <strong>站点公告</strong>
+                      <h3 class="title"></h3>
+                    </a>
                     <div id="tp-weather-widget"></div>
                   </div>
                     <div class="panel panel-default sitetip">
@@ -106,7 +110,7 @@
           //   // this.getArticleDetail(articleId);
           //   this.getLinks();
           // })
-          eventBus.$on('articleId',(articleId) => this.getArticleDetail(articleId))
+          eventBus.$on('articleId',(articleId) => this.getArticleDetail(articleId));
           (function (T, h, i, n, k, P, a, g, e) {
             g = function () {
               P = h.createElement(i);
