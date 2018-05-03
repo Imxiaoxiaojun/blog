@@ -2,28 +2,13 @@
     <div class="w_container">
         <div class="container">
             <div class="row w_main_row">
-                <div class="col-lg-9 col-md-9 w_main_left">
-                    <!--滚动图开始-->
-                    <div class="panel panel-default">
-                        <banner></banner>
-                    </div>
-
-                    <div class="panel panel-default contenttop">
-                        <a href="article_detail.html">
-                            <strong>博主置顶</strong>
-                            <h3 class="title"></h3>
-                            <p class="overView">个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。。。</p>
-                        </a>
-                    </div>
-                    <Article></Article>
-
-                </div>
+              <component :articles="articles" :article_detail="article_detail" :is="currentView"></component>
 
                 <!--右侧开始-->
                 <div class="col-lg-3 col-md-3 w_main_right">
 
                     <div class="panel panel-default sitetip">
-                        <a href="article_detail.html">
+                        <a href="ArticleDetail.vue">
                             <strong>站点公告</strong>
                             <h3 class="title"></h3>
                             <p class="overView">个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。。。</p>
@@ -41,7 +26,7 @@
                         <div class="panel-body">
                             <div class="newContent">
                                 <ul class="list-unstyled sidebar shiplink">
-                                  <template v-for="link in links">
+                                  <template v-for="link in links.list">
                                     <li>
                                       <a :href="link.url" target="_blank">{{link.name | formatLinkName}}</a>
                                     </li>
@@ -82,36 +67,78 @@
 </template>
 
 <script>
-    import Banner from './Banner.vue'
     import HotTag from './Tag.vue'
     import Article from './Article.vue'
     import HotArticle from './HotArticle.vue'
+    import ArticleDetail from './components/ArticleDetail.vue'
+    import eventBus from './eventBus'
+
     export default {
         components:{
-            Banner,HotTag,Article,HotArticle
+            HotTag,Article,HotArticle,ArticleDetail
         },
         data(){
           return {
-            links: [],
-            apiUrl: 'api/links/list',
-            pageSize: '5',
+            articles: {
+              list: [],
+              total: 0,
+              pageNo: 1,
+              pageSize: 15
+            },
+            links: {
+              list: []
+            },
+            article_detail: {},
+            apiLink: 'api/links/list',
+            apiArticles: 'api/article/list',
+            apiArticleDetail: 'api/article/detail/',
+            currentView: 'Article'
           }
         },
         mounted:function(){
           this.getLinks();
-        },
+          this.getArticles();
+          // eventBus.$on('articleId',function (articleId) {
+          //   this.currentView = 'ArticleDetail';
+          //   // this.getArticleDetail(articleId);
+          //   this.getLinks();
+          // })
+          eventBus.$on('articleId',(articleId) => this.getArticleDetail(articleId))},
         methods:{
           getLinks: function () {
-            this.$axios.get(this.apiUrl,{
+            this.$axios.get(this.apiLink,{
               params: {
-                pageSize: this.pageSize,
+                pageSize: '5',
               }
             }).then((response) => {
-              this.links = response.data.records;
+              this.links.list = response.data.records;
             }).catch(function (response) {
               console.log(response)
             });
-          }
+          },
+          getArticles: function () {
+            this.$axios.get(this.apiArticles, {
+              params: {
+                pageSize: this.articles.pageSize,
+              }
+            }).then((response) => {
+              this.articles.list = response.data.records;
+              this.articles.total= response.data.total;
+              // this.articles.pageNo = response.data.size;
+            }).catch(function (response) {
+              console.log(response)
+            });
+          },
+          getArticleDetail: function (id) {
+            console.log(id);
+            this.currentView = 'ArticleDetail';
+            this.$axios.get(this.apiArticleDetail + id).then((response) => {
+              this.article_detail= response.data;
+              // this.articles.pageNo = response.data.size;
+            }).catch(function (response) {
+              console.log(response)
+            });
+          },
         },
         filters:{
           formatLinkName:function (name) {

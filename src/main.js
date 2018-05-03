@@ -4,7 +4,6 @@
 
 
 import Vue from 'vue'
-import qs from 'qs'
 // import HTTP from 'vue-resource'
 import {
   Button,
@@ -29,19 +28,7 @@ import locale from 'element-ui/lib/locale'
 import moment from 'moment'
 import axios from 'axios'
 import curvejs from 'curvejs'
-let Base64 = require('js-base64').Base64;
-
-const addCookie = function(objName, objValue, objHours){//添加cookie
-  var str = objName + "=" + escape(objValue);
-  if (objHours > 0) {//为0时不设定过期时间，浏览器关闭时cookie自动消失
-    var date = new Date();
-    var ms = objHours * 3600 * 1000;
-    date.setTime(date.getTime() + ms);
-    str += "; expires=" + date.toGMTString();
-  }
-  document.cookie = str;
-  alert("添加cookie成功");
-}
+import vueRouter from 'vue-router'
 
 const getToken = function () {
   var arr, reg = new RegExp("(^| )" + 'TOKEN_COOKIE' + "=([^;]*)(;|$)");
@@ -75,6 +62,7 @@ axios.interceptors.request.use(function (config) {
 Object.defineProperty(Vue.prototype, '$moment', { value: moment });
 Object.defineProperty(Vue.prototype, '$axios', { value: axios });
 Object.defineProperty(Vue.prototype, '$curvejs', { value: curvejs });
+Object.defineProperty(Vue.prototype, '$vueRouter', { value: vueRouter });
 
 Vue.use(Button);
 Vue.use(Select);
@@ -88,7 +76,6 @@ Vue.use(FormItem);
 Vue.use(Input);
 Vue.use(Dialog);
 Vue.use(Option);
-
 locale.use(lang);
 
 
