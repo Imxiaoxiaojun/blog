@@ -1,3 +1,4 @@
-dist/
+blog/dist/
 node_modules/
 blog/node_modules/
+dist/
