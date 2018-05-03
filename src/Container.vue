@@ -7,9 +7,7 @@
                 <!--右侧开始-->
                 <div class="col-lg-3 col-md-3 w_main_right">
 
-                    <div class="tp-weather-widget">
-
-                    </div>
+                  <div id="tp-weather-widget"></div>
                     <div class="panel panel-default sitetip">
                       <a href="ArticleDetail.vue">
                         <strong>站点公告</strong>
