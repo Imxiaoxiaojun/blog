@@ -26,7 +26,7 @@
 
               <div :class="article.imageUrl && article.imageUrl != '' ? 'contentleft' : ''">
                 <h4>
-                  <a class="title" @click="getDetail(article.id)">{{article.title}}</a>
+                  <a class="title" style="cursor: pointer;" @click="getDetail(article.id)">{{article.title}}</a>
                 </h4>
                 <p>
                   <a class="label label-default" v-for="tag in article.tagList" :style="'background:' + tag.color">{{tag.name}}</a>

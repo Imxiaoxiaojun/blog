@@ -7,12 +7,15 @@
                 <!--右侧开始-->
                 <div class="col-lg-3 col-md-3 w_main_right">
 
+                    <div class="tp-weather-widget">
+
+                    </div>
                     <div class="panel panel-default sitetip">
-                        <a href="ArticleDetail.vue">
-                            <strong>站点公告</strong>
-                            <h3 class="title"></h3>
-                            <p class="overView">个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。。。</p>
-                        </a>
+                      <a href="ArticleDetail.vue">
+                        <strong>站点公告</strong>
+                        <h3 class="title"></h3>
+                        <p class="overView">个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。。。</p>
+                      </a>
                     </div>
 
                     <HotTag></HotTag>
@@ -106,11 +109,7 @@
           eventBus.$on('articleId',(articleId) => this.getArticleDetail(articleId))},
         methods:{
           getLinks: function () {
-            this.$axios.get(this.apiLink,{
-              params: {
-                pageSize: '5',
-              }
-            }).then((response) => {
+            this.$axios.get(this.apiLink).then((response) => {
               this.links.list = response.data.records;
             }).catch(function (response) {
               console.log(response)
