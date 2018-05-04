@@ -28,7 +28,6 @@ import locale from 'element-ui/lib/locale'
 import moment from 'moment'
 import axios from 'axios'
 import curvejs from 'curvejs'
-import vueRouter from 'vue-router'
 
 const getToken = function () {
   var arr, reg = new RegExp("(^| )" + 'TOKEN_COOKIE' + "=([^;]*)(;|$)");
@@ -52,6 +51,19 @@ axios.interceptors.request.use(function (config) {
     return Promise.reject(error);
 });
 
+/*VueRouter.afterEach( ( to, from, next ) => {
+  setTimeout(()=>{
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?82173aec295b8624fb31f98d97c6eb2a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  },0);
+});*/
+
+
 /*axios.interceptors.response.use(function (response) {
     console.log(response.headers);
     return response;
@@ -62,7 +74,6 @@ axios.interceptors.request.use(function (config) {
 Object.defineProperty(Vue.prototype, '$moment', { value: moment });
 Object.defineProperty(Vue.prototype, '$axios', { value: axios });
 Object.defineProperty(Vue.prototype, '$curvejs', { value: curvejs });
-Object.defineProperty(Vue.prototype, '$vueRouter', { value: vueRouter });
 
 Vue.use(Button);
 Vue.use(Select);
@@ -77,19 +88,8 @@ Vue.use(Input);
 Vue.use(Dialog);
 Vue.use(Option);
 locale.use(lang);
-Vue.use(vueRouter);
 
-vueRouter.afterEach( ( to, from, next ) => {
-  setTimeout(()=>{
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?82173aec295b8624fb31f98d97c6eb2a";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  },0);
-});
+
 
 // eslint-disable-next-line no-new
 new Vue({
