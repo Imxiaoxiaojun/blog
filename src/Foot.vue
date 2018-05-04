@@ -18,7 +18,7 @@
 
       const s = document.createElement('script');
       s.type = 'text/javascript';
-      s.src = this.cnzz_protocol + 's22.cnzz.com/z_stat.php%3Fid%3D1273601836%26show%3Dpic';
+      s.src = this.cnzz_protocol + 's22.cnzz.com/z_stat.php?id=1273601836&show=pic';
       document.body.appendChild(s);
 
      /* var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
