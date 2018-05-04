@@ -7,7 +7,7 @@
       <ul class="list-unstyled sidebar">
         <template v-for="hotArticle in hotList">
           <li>
-            <a href="/post/04928311">{{hotArticle.title | filterTitle}}</a>
+            <a class="title" style="cursor: pointer;" @click="getDetail(hotArticle.id)">{{hotArticle.title | formatLinkName}}</a>
           </li>
         </template>
       </ul>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+  import eventBus from './eventBus'
     export default {
         name: "HotArticle",
       data() {
@@ -35,12 +36,17 @@
             console.log(response)
           });
         },
+        getDetail: function (id) {
+          eventBus.$emit('articleId', id);
+        }
       },
 
       filters: {
-        filterTitle: function (value) {
-          var str = value.replace(/(\\r\\n)|(\\n)/g,' ');
-          return str
+        formatLinkName:function (name) {
+          if (name.length > 20){
+            name = name.substr(0,20)+"...";
+          }
+          return name;
         }
       },
     }

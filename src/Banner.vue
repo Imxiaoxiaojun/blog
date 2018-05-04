@@ -54,9 +54,8 @@
 </template>
 
 <script>
-  import Bus from './eventBus'
   export default {
-    name: "banner",
+    name: "Banner",
     data() {
       return {
         banners: [],

@@ -1,7 +1,7 @@
 <template>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title">热门标签3</h3>
+      <h3 class="panel-title">热门标签</h3>
     </div>
     <div class="panel-body">
       <div class="labelList">

@@ -3,7 +3,6 @@
         <div class="container">
             <div class="row w_main_row">
               <component :articles="articles" :article_detail="article_detail" :is="currentView"></component>
-
                 <!--右侧开始-->
                 <div class="col-lg-3 col-md-3 w_main_right">
                   <div class="panel panel-default sitetip">
@@ -70,22 +69,21 @@
 
 <script>
     import HotTag from './Tag.vue'
-    import Article from './Article.vue'
+    import _Article from './Article.vue'
     import HotArticle from './HotArticle.vue'
     import ArticleDetail from './components/ArticleDetail.vue'
     import eventBus from './eventBus'
-
     export default {
         components:{
-            HotTag,Article,HotArticle,ArticleDetail
+            HotTag,_Article,HotArticle,ArticleDetail
         },
         data(){
           return {
             articles: {
               list: [],
               total: 0,
-              pageNo: 1,
-              pageSize: 15
+              currentPage: 1,
+              pageSize: 10
             },
             links: {
               list: []
@@ -94,17 +92,12 @@
             apiLink: 'api/links/list',
             apiArticles: 'api/article/list',
             apiArticleDetail: 'api/article/detail/',
-            currentView: 'Article'
+            currentView: '_Article'
           }
         },
         mounted:function(){
           this.getLinks();
           this.getArticles();
-          // eventBus.$on('articleId',function (articleId) {
-          //   this.currentView = 'ArticleDetail';
-          //   // this.getArticleDetail(articleId);
-          //   this.getLinks();
-          // })
           eventBus.$on('articleId',(articleId) => this.getArticleDetail(articleId));
           (function (T, h, i, n, k, P, a, g, e) {
             g = function () {
@@ -143,6 +136,7 @@
           },
 
         methods:{
+
           getLinks: function () {
             this.$axios.get(this.apiLink).then((response) => {
               this.links.list = response.data.records;
@@ -154,6 +148,7 @@
             this.$axios.get(this.apiArticles, {
               params: {
                 pageSize: this.articles.pageSize,
+                pageNo: this.articles.currentPage
               }
             }).then((response) => {
               this.articles.list = response.data.records;

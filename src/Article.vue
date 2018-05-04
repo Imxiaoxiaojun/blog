@@ -54,7 +54,8 @@
         </template>
       </div>
       <!--文章列表结束-->
-
+      <v-pagination :total="articles.total" :current-page='articles.currentPage' @pagechange="pagechange"></v-pagination>
+      <!--<pagination :page-no="pageNo" :current.sync="currentPage"></pagination>-->
     </div>
   </div>
   </div>
@@ -63,31 +64,25 @@
 <script>
   import eventBus from './eventBus'
   import Banner from './Banner.vue'
-
-  // import ArticleDetail from './components/article_detail'
+  import pagination from './pagination'
 
   export default {
-    name: "Article",
     props: ["articles"],
+
     components:{
-      Banner
+      Banner,
+      'v-pagination': pagination,
     },
-    /*data() {
-      return {
-        articles: [],
-        apiUrl: 'api/article/list',
-        total: 0,
-        pageSize: 20,
-        pageNo: 1,
-      }
-    },*/
-   /* mounted: function () {
-      this.getList();
-    },*/
     methods: {
       getDetail: function (id) {
         eventBus.$emit('articleId', id);
-      }
+      },
+      pagechange:function(currentPage){
+        console.log(currentPage);
+        this.$parent.articles.currentPage = currentPage;
+        // ajax请求, 向后台发送 currentPage, 来获取对应的数据
+        this.$parent.getArticles();
+      },
     },
     filters: {
       filterSummary: function (value) {
