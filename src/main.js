@@ -77,9 +77,19 @@ Vue.use(Input);
 Vue.use(Dialog);
 Vue.use(Option);
 locale.use(lang);
+Vue.use(vueRouter);
 
-
-
+vueRouter.afterEach( ( to, from, next ) => {
+  setTimeout(()=>{
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?82173aec295b8624fb31f98d97c6eb2a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  },0);
+});
 
 // eslint-disable-next-line no-new
 new Vue({
