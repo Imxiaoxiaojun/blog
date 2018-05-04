@@ -5,3 +5,19 @@
         </div>
     </div>
 </template>
+
+<script>
+  export default {
+    mounted:function () {
+      var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      document.write(unescape("%3Cspan id='cnzz_stat_icon_1273601836'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1273601836%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?82173aec295b8624fb31f98d97c6eb2a";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    },
+  }
+</script>
