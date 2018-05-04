@@ -24,3 +24,18 @@
         </div>
     </div>
 </template>
+
+<script>
+  export default {
+    mounted:function () {
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?b89a08dec53e9c0d2f1e135dd9b91568";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    }
+  }
+
+</script>
