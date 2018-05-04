@@ -14,11 +14,11 @@
       cnzz_protocol: '';
     },
     mounted:function () {
-      this.cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+      this.cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
 
-      const s = document.createElement('script');
+      /*const s = document.createElement('script');
       s.type = 'text/javascript';
-      s.src = this.cnzz_protocol + 's22.cnzz.com/z_stat.php?id=1273601836&show=pic';
+      s.src = this.cnzz_protocol + 's22.cnzz.com/z_stat.php?id=1273601836&show=pic';*/
       document.body.appendChild(s);
 
      /* var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
