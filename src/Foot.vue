@@ -1,8 +1,9 @@
 <template>
     <div class="w_foot">
       <div class="w_foot_copyright">Copyright &copy; 2017-2020, www.strawman.xin. All Rights Reserved. <span>|</span>
-            <a target="_blank" href="http://www.miitbeian.gov.cn/" rel="nofollow">浙ICP备16013152号-1</a>
-            <span id="cnzz_stat_icon_1273601836"></span>
+        <a target="_blank" href="http://www.miitbeian.gov.cn/" rel="nofollow">浙ICP备16013152号-1</a>
+        <span id="cnzz_stat_icon_1273601836"></span>
+        <remote-js src="http://s22.cnzz.com/z_stat.php?id=1273601836&show=pic"></remote-js>
       </div>
     </div>
 
@@ -13,8 +14,18 @@
     data(){
       cnzz_protocol: '';
     },
+    components: {
+      'remote-js': {
+        render(createElement) {
+          return createElement('script', { attrs: { type: 'text/javascript', src: this.src }});
+        },
+        props: {
+          src: { type: String, required: true },
+        },
+      },
+    },
     mounted:function () {
-      this.cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+      // this.cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
 
       /*const s = document.createElement('script');
       s.type = 'text/javascript';
