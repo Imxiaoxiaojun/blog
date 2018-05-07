@@ -5,9 +5,13 @@
               <component :articles="articles" :article_detail="article_detail" :is="currentView"></component>
                 <!--右侧开始-->
                 <div class="col-lg-3 col-md-3 w_main_right">
-                  <div class="panel panel-default sitetip">
-                    <div id="tp-weather-widget"></div>
-                  </div>
+
+                    <div class="panel panel-default sitetip">
+                      <a href="https://github.com/Imxiaoxiaojun/blog" class="github" target="_blank"/>
+                    </div>
+                    <div class="panel panel-default sitetip">
+                      <div id="tp-weather-widget"></div>
+                    </div>
                     <div class="panel panel-default sitetip">
                       <a href="ArticleDetail.vue">
                         <strong>站点公告</strong>
@@ -184,3 +188,11 @@
     //     })
     // });
 </script>
+<style scoped>
+  .github {
+    width: 35px;
+    height: 35px;
+    background-image: url("../static/img/github.png");
+    background-repeat: no-repeat;
+  }
+</style>
