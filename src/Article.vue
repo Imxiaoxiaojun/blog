@@ -54,7 +54,7 @@
         </template>
       </div>
       <!--文章列表结束-->
-      <v-pagination :total="articles.total" :current-page='articles.currentPage' @pagechange="pagechange"></v-pagination>
+      <v-pagination :total="articles.total" :current-page='articles.currentPage' @pagechange="pagechange" style="text-align: center"></v-pagination>
       <!--<pagination :page-no="pageNo" :current.sync="currentPage"></pagination>-->
     </div>
   </div>

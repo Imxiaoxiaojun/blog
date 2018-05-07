@@ -3,11 +3,12 @@
     <ul class="pagination">
       <li :class="{'disabled': current == 1}"><a href="javascript:;" @click="setCurrent(current - 1)"> « </a></li>
       <li :class="{'disabled': current == 1}"><a href="javascript:;" @click="setCurrent(1)"> 首页 </a></li>
-      <li v-for="p in grouplist" :class="{'active': current == p.val}"><a href="javascript:;"
-                                                                          @click="setCurrent(p.val)"> {{ p.text }} </a>
+      <li v-for="p in grouplist" :class="{'active': current == p.val}">
+        <a href="javascript:;"@click="setCurrent(p.val)"> {{ p.text }} </a>
       </li>
       <li :class="{'disabled': current == page}"><a href="javascript:;" @click="setCurrent(page)"> 尾页 </a></li>
       <li :class="{'disabled': current == page}"><a href="javascript:;" @click="setCurrent(current + 1)"> »</a></li>
+      <li :class="{'disabled': 'true'}"> <a href="javascript:;"> 共{{page}}页</a></li>
     </ul>
   </nav>
 </template>
@@ -87,14 +88,14 @@
   }
 </script>
 
-<style v-bind:type="lessLoader('less')">
+<style v-bind:type="generateLoaders('less')">
   .pagination {
     overflow: hidden;
     display: table;
     margin: 0 auto;
     /*width: 100%;*/
     height: 50px;
-
+>
     li {
       float: left;
       height: 30px;
