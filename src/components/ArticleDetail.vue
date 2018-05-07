@@ -4,7 +4,7 @@
         <ol class="breadcrumb w_breadcrumb">
           <li><a href="#">首页</a></li>
           <li><a href="#">java</a></li>
-          <li class="active">{{article_detail.title}}</li>
+          <li class="active">{{article.title}}</li>
           <span class="w_navbar_tip"></span>
         </ol>
 
@@ -59,9 +59,30 @@
 </template>
 
 <script>
+  import eventBus from './eventBus'
     export default {
       name: "ArticleDetail",
-      props:['article_detail'],
+      components:{
+        eventBus
+      },
+      data(){
+        return {
+          article:{}
+        }
+      },
+      mounted: function(){
+        eventBus.$on("getArticle",(id) => this.getArticleDetail(id))
+      },
+      methods:{
+        getArticleDetail: function (id) {
+          this.$parent.currentView = 'ArticleDetail'
+          this.$axios.get(this.apiArticleDetail + id).then((response) => {
+            this.article= response.data;
+          }).catch(function (response) {
+            console.log(response)
+          });
+        },
+      },
     }
 </script>
 

@@ -148,30 +148,8 @@
               console.log(response)
             });
           },
-          getArticles: function () {
-            this.$axios.get(this.apiArticles, {
-              params: {
-                pageSize: this.articles.pageSize,
-                pageNo: this.articles.currentPage
-              }
-            }).then((response) => {
-              this.articles.list = response.data.records;
-              this.articles.total= response.data.total;
-              // this.articles.pageNo = response.data.size;
-            }).catch(function (response) {
-              console.log(response)
-            });
-          },
-          getArticleDetail: function (id) {
-            console.log(id);
-            this.currentView = 'ArticleDetail';
-            this.$axios.get(this.apiArticleDetail + id).then((response) => {
-              this.article_detail= response.data;
-              // this.articles.pageNo = response.data.size;
-            }).catch(function (response) {
-              console.log(response)
-            });
-          },
+
+
         },
         filters:{
           formatLinkName:function (name) {

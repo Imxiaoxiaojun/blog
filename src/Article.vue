@@ -68,14 +68,23 @@
 
   export default {
     props: ["articles"],
-
+    data(){
+      return {
+        articles: {
+          list: [],
+          total: 0,
+          currentPage: 1,
+          pageSize: 10
+        },
+      }
+    },
     components:{
       Banner,
       'v-pagination': pagination,
     },
     methods: {
       getDetail: function (id) {
-        eventBus.$emit('articleId', id);
+        eventBus.$emit('getArticle', id);
       },
       pagechange:function(currentPage){
         console.log(currentPage);
