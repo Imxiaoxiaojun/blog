@@ -102,6 +102,8 @@
           }
         },
         mounted:function(){
+          // eventBus.$on(this.$parent.showBanner,this.showBanner = this.$parent.showBanner)
+          // console.log("mounted,this showBanner",this.showBanner,"parent showBanner",this.$parent.showBanner)
           this.showBanner = this.$parent.showBanner
           this.getLinks();
           (function (T, h, i, n, k, P, a, g, e) {

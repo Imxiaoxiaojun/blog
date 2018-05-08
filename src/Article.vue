@@ -82,8 +82,6 @@
         this.$parent.changeArticleDetail(id);
       },
       changePage:function(currentPage){
-        console.log(this.$refs)
-
         this.currentPage = currentPage;
         // ajax请求, 向后台发送 currentPage, 来获取对应的数据
         this.getArticles();
