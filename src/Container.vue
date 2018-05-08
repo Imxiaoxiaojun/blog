@@ -2,7 +2,7 @@
     <div class="w_container">
         <div class="container">
             <div class="row w_main_row">
-              <component :articles="articles" :article_detail="article_detail" :is="currentView"></component>
+              <component :is="currentView"></component>
                 <!--右侧开始-->
                 <div class="col-lg-3 col-md-3 w_main_right">
 
