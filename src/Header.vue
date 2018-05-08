@@ -31,7 +31,7 @@
       }
     },
     mounted:function () {
-      eventBus.$on('articleId',(tag) => tag ? this.activeId = 1:0);
+      eventBus.$on('activeId',(tag) => tag ? this.activeId = tag : 0);
     },
     methods: {
       changeContainer: function (enName, index) {

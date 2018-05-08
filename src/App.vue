@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <!--<Test></Test>-->
         <IHeader></IHeader>
         <!--<IContainer></IContainer>-->
         <component :is="currentView"></component>
@@ -12,9 +11,7 @@
     import IContainer from './Container.vue'
     import IFoot from './Foot.vue'
     import IBuilding from './building'
-    import IArticle from './Article'
-    import IAbout from './about'
-    import Test from './Test.vue'
+    import eventBus from './eventBus'
     export default {
         name: 'app',
         data(){
@@ -23,14 +20,16 @@
           }
         },
         components: {
-           IHeader,IContainer,IFoot,IBuilding,IArticle,IAbout,
-          Test
+           IHeader,IContainer,IFoot,IBuilding,
         },
         mounted:function () {
 
         },
         methods: {
           changeCategory: function (tag) {
+            if (tag && tag === 'IContainer'){
+              eventBus.$emit('showBanner', false)
+            }
             this.currentView = (!tag || tag === '') ? 'IBuilding' : tag;
           }
         }

@@ -70,7 +70,6 @@
     },
     methods: {
       getList: function () {
-        console.log("getBanners");
         this.$axios.get(this.apiUrl).then((response) => {
           this.banners = response.data.records;
           this.total = response.data.total;

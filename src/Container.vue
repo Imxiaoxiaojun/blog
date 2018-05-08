@@ -2,7 +2,7 @@
     <div class="w_container">
         <div class="container">
             <div class="row w_main_row">
-              <component :is="currentView"></component>
+              <component :article="article" :is="currentView"></component>
                 <!--右侧开始-->
                 <div class="col-lg-3 col-md-3 w_main_right">
 
@@ -59,20 +59,26 @@
 
 <script>
     import HotTag from './Tag.vue'
-    import _Article from './Article.vue'
+    import Article from './Article.vue'
     import HotArticle from './HotArticle.vue'
     import ArticleDetail from './components/ArticleDetail.vue'
+    import eventBus from './eventBus'
     export default {
         components:{
-            HotTag,_Article,HotArticle,ArticleDetail
+            HotTag,
+            '_Article': Article,
+            HotArticle,
+            '_ArticleDetail': ArticleDetail
         },
         data(){
           return {
             links: {
               list: []
             },
+            article:{},
             apiLink: 'api/links/list',
-            currentView: '_Article'
+            currentView: '_Article',
+            apiArticle: 'api/article/detail/'
           }
         },
         mounted:function(){
@@ -121,8 +127,15 @@
               console.log(response)
             });
           },
-
-
+          changeArticleDetail: function (id) {
+            eventBus.$emit('activeId',1)
+            this.currentView = '_ArticleDetail'
+            this.$axios.get(this.apiArticle + id).then((response) => {
+              this.article = response.data;
+            }).catch(function (response) {
+              console.log(response)
+            });
+          },
         },
         filters:{
           formatLinkName:function (name) {
