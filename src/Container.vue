@@ -36,21 +36,7 @@
                                       <a :href="link.url" target="_blank">{{link.name | formatLinkName}}</a>
                                     </li>
                                   </template>
-                                   <!-- <li>
-                                        <a href="https://www.baidu.com/" target="_blank">百度</a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.oschina.net/" target="_blank">开源中国</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://www.ulewo.com/" target="_blank">有乐网</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://www.sina.com.cn/" target="_blank">新浪网</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://www.qq.com/" target="_blank">腾讯网</a>
-                                    </li>-->
+
                                 </ul>
                             </div>
                         </div>
@@ -76,32 +62,21 @@
     import _Article from './Article.vue'
     import HotArticle from './HotArticle.vue'
     import ArticleDetail from './components/ArticleDetail.vue'
-    import eventBus from './eventBus'
     export default {
         components:{
             HotTag,_Article,HotArticle,ArticleDetail
         },
         data(){
           return {
-            articles: {
-              list: [],
-              total: 0,
-              currentPage: 1,
-              pageSize: 10
-            },
             links: {
               list: []
             },
-            article_detail: {},
             apiLink: 'api/links/list',
-
-            apiArticleDetail: 'api/article/detail/',
             currentView: '_Article'
           }
         },
         mounted:function(){
           this.getLinks();
-          eventBus.$on('articleId',(articleId) => this.getArticleDetail(articleId));
           (function (T, h, i, n, k, P, a, g, e) {
             g = function () {
               P = h.createElement(i);
@@ -139,7 +114,6 @@
           },
 
         methods:{
-
           getLinks: function () {
             this.$axios.get(this.apiLink).then((response) => {
               this.links.list = response.data.records;

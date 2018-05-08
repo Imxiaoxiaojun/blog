@@ -20,7 +20,7 @@
 
       <!--文章列表开始-->
       <div class="contentList">
-        <template v-for="article in articles.list">
+        <template v-for="article in articles">
           <div class="panel panel-default">
             <div class="panel-body">
 
@@ -54,7 +54,7 @@
         </template>
       </div>
       <!--文章列表结束-->
-      <v-pagination :total="articles.total" :current-page='articles.currentPage' @pagechange="pagechange" style="text-align: center"></v-pagination>
+      <v-pagination :total="total" :current-page='currentPage' @pagechange="pagechange" style="text-align: center"></v-pagination>
       <!--<pagination :page-no="pageNo" :current.sync="currentPage"></pagination>-->
     </div>
   </div>
@@ -70,12 +70,10 @@
     props: ["articles"],
     data(){
       return {
-        articles: {
-          list: [],
-          total: 0,
-          currentPage: 1,
-          pageSize: 10
-        },
+        articles: [],
+        total: 0,
+        currentPage: 1,
+        pageSize: 10,
         apiUrl: 'api/article/list',
       }
     },
@@ -91,19 +89,18 @@
         eventBus.$emit('getArticle', id);
       },
       pagechange:function(currentPage){
-        console.log(currentPage);
-        this.$parent.articles.currentPage = currentPage;
+        this.currentPage = currentPage;
         // ajax请求, 向后台发送 currentPage, 来获取对应的数据
-        this.$parent.getArticles();
+        this.getArticles();
       },
       getArticles: function () {
         this.$axios.get(this.apiUrl, {
           params: {
-            pageSize: this.articles.pageSize,
-            pageNo: this.articles.currentPage
+            pageSize: this.pageSize,
+            pageNo: this.currentPage
           }
         }).then((response) => {
-          this.articles.list = response.data.records;
+          this.articles = response.data.records;
           this.articles.total= response.data.total;
           // this.articles.pageNo = response.data.size;
         }).catch(function (response) {
