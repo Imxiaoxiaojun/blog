@@ -81,7 +81,7 @@
       setCurrent: function (idx) {
         if (this.current != idx && idx > 0 && idx < this.page + 1) {
           this.current = idx;
-          this.$emit('pageChange', this.current);
+          this.$emit('changePage', this.current);
         }
       }
     }

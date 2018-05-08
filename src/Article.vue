@@ -54,7 +54,7 @@
         </template>
       </div>
       <!--文章列表结束-->
-      <v-pagination :total="total" :current-page='currentPage' @pagechange="pageChange" style="text-align: center"></v-pagination>
+      <v-pagination :total="total" :current-page='currentPage' @changePage="changePage" style="text-align: center"></v-pagination>
       <!--<pagination :page-no="pageNo" :current.sync="currentPage"></pagination>-->
     </div>
   </div>
@@ -67,7 +67,6 @@
   import pagination from './pagination'
 
   export default {
-    props: ["articles"],
     data(){
       return {
         articles: [],
@@ -88,7 +87,7 @@
       getDetail: function (id) {
         eventBus.$emit('getArticle', id);
       },
-      pageChange:function(currentPage){
+      changePage:function(currentPage){
         this.currentPage = currentPage;
         // ajax请求, 向后台发送 currentPage, 来获取对应的数据
         this.getArticles();
@@ -101,7 +100,7 @@
           }
         }).then((response) => {
           this.articles = response.data.records;
-          this.articles.total= response.data.total;
+          this.total= response.data.total;
           // this.articles.pageNo = response.data.size;
         }).catch(function (response) {
           console.log(response)
