@@ -30,13 +30,16 @@
         activeId: 0
       }
     },
+    components:{
+      eventBus
+    },
     mounted:function () {
       eventBus.$on('activeId',(tag) => tag ? this.activeId = tag : 0);
     },
     methods: {
       changeContainer: function (enName, index) {
         this.activeId = index;
-        this.$parent.changeCategory(enName)
+        this.$parent.changeCategory(enName,index)
       }
     }
   }

@@ -11,26 +11,29 @@
     import IContainer from './Container.vue'
     import IFoot from './Foot.vue'
     import IBuilding from './building'
-    import eventBus from './eventBus'
+    import IAbout from './about'
     export default {
         name: 'app',
         data(){
           return {
-            currentView: IContainer
+            currentView: IContainer,
+            showBanner: true
           }
         },
         components: {
-           IHeader,IContainer,IFoot,IBuilding,
+           IHeader,IContainer,IFoot,IBuilding,IAbout
         },
         mounted:function () {
 
         },
         methods: {
-          changeCategory: function (tag) {
-            if (tag && tag === 'IContainer'){
-              eventBus.$emit('showBanner', false)
-            }
+          changeCategory: function (tag,index) {
             this.currentView = (!tag || tag === '') ? 'IBuilding' : tag;
+            if (index && index === 0){
+              this.showBanner = true;
+            }else{
+              this.showBanner = false;
+            }
           }
         }
     }

@@ -1,18 +1,4 @@
 <template>
-  <div class="col-lg-9 col-md-9 w_main_left">
-    <!--滚动图开始-->
-    <div v-show="showBanner">
-      <div class="panel panel-default">
-        <banner v-show="showBanner"></banner>
-      </div>
-      <div class="panel panel-default contenttop">
-        <a href="ArticleDetail.vue">
-          <strong>博主置顶</strong>
-          <h3 class="title"></h3>
-          <p class="overView">个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。。。</p>
-        </a>
-      </div>
-    </div>
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -61,7 +47,7 @@
       <!--<pagination :page-no="pageNo" :current.sync="currentPage"></pagination>-->
     </div>
   </div>
-  </div>
+
 </template>
 
 <script>
@@ -89,7 +75,6 @@
       this.getArticles();
       eventBus.$on('showBanner', function (showBanner) {
         this.showBanner = showBanner;
-        console.log("$on showBanner ",this.showBanner)
       })
     },
     methods: {
@@ -97,13 +82,13 @@
         this.$parent.changeArticleDetail(id);
       },
       changePage:function(currentPage){
+        console.log(this.$refs)
+
         this.currentPage = currentPage;
         // ajax请求, 向后台发送 currentPage, 来获取对应的数据
         this.getArticles();
       },
       getArticles: function () {
-        console.log("getArticles ",this.showBanner)
-
         this.$axios.get(this.apiUrl, {
           params: {
             pageSize: this.pageSize,

@@ -2,7 +2,23 @@
     <div class="w_container">
         <div class="container">
             <div class="row w_main_row">
-              <component :article="article" :is="currentView"></component>
+              <div class="col-lg-9 col-md-9 w_main_left">
+                <!--滚动图开始-->
+                <div v-show="showBanner">
+                  <div class="panel panel-default">
+                    <banner v-show="showBanner"></banner>
+                  </div>
+                  <div class="panel panel-default contenttop">
+                    <a href="ArticleDetail.vue">
+                      <strong>博主置顶</strong>
+                      <h3 class="title"></h3>
+                      <p class="overView">个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。。。</p>
+                    </a>
+                  </div>
+                </div>
+                <component :article="article" :is="currentView"></component>
+
+              </div>
                 <!--右侧开始-->
                 <div class="col-lg-3 col-md-3 w_main_right">
 
@@ -63,12 +79,15 @@
     import HotArticle from './HotArticle.vue'
     import ArticleDetail from './components/ArticleDetail.vue'
     import eventBus from './eventBus'
+    import Banner from './Banner.vue'
+
     export default {
         components:{
             HotTag,
             '_Article': Article,
             HotArticle,
-            '_ArticleDetail': ArticleDetail
+            '_ArticleDetail': ArticleDetail,
+            Banner
         },
         data(){
           return {
@@ -78,10 +97,12 @@
             article:{},
             apiLink: 'api/links/list',
             currentView: '_Article',
-            apiArticle: 'api/article/detail/'
+            apiArticle: 'api/article/detail/',
+            showBanner: true
           }
         },
         mounted:function(){
+          this.showBanner = this.$parent.showBanner
           this.getLinks();
           (function (T, h, i, n, k, P, a, g, e) {
             g = function () {
@@ -117,7 +138,7 @@
             "hash": "3d1905d272c3bb08cc52c4c3e7ad4059"
           });
           tpwidget("show");
-          },
+        },
 
         methods:{
           getLinks: function () {
