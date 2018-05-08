@@ -59,7 +59,7 @@
 </template>
 
 <script>
-  import eventBus from './eventBus'
+  import eventBus from '../eventBus'
     export default {
       name: "ArticleDetail",
       components:{
