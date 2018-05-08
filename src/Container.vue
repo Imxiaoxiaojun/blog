@@ -94,14 +94,13 @@
             },
             article_detail: {},
             apiLink: 'api/links/list',
-            apiArticles: 'api/article/list',
+
             apiArticleDetail: 'api/article/detail/',
             currentView: '_Article'
           }
         },
         mounted:function(){
           this.getLinks();
-          this.getArticles();
           eventBus.$on('articleId',(articleId) => this.getArticleDetail(articleId));
           (function (T, h, i, n, k, P, a, g, e) {
             g = function () {

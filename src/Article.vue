@@ -76,11 +76,15 @@
           currentPage: 1,
           pageSize: 10
         },
+        apiUrl: 'api/article/list',
       }
     },
     components:{
       Banner,
       'v-pagination': pagination,
+    },
+    mounted:function(){
+      this.getArticles();
     },
     methods: {
       getDetail: function (id) {
@@ -91,6 +95,20 @@
         this.$parent.articles.currentPage = currentPage;
         // ajax请求, 向后台发送 currentPage, 来获取对应的数据
         this.$parent.getArticles();
+      },
+      getArticles: function () {
+        this.$axios.get(this.apiUrl, {
+          params: {
+            pageSize: this.articles.pageSize,
+            pageNo: this.articles.currentPage
+          }
+        }).then((response) => {
+          this.articles.list = response.data.records;
+          this.articles.total= response.data.total;
+          // this.articles.pageNo = response.data.size;
+        }).catch(function (response) {
+          console.log(response)
+        });
       },
     },
     filters: {
