@@ -3,13 +3,14 @@
     <div class="container">
       <div class="row w_main_row">
 
-        <ol class="breadcrumb w_breadcrumb">
-          <li><a href="">首页</a></li>
-          <li class="active">关于我</li>
-          <span class="w_navbar_tip">像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。</span>
-        </ol>
+
 
         <div class="col-lg-9 col-md-9 w_main_left" style="height: 1000px;">
+          <ol class="breadcrumb w_breadcrumb">
+            <li><a href="">首页</a></li>
+            <li class="active">关于我</li>
+            <span class="w_navbar_tip">像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。</span>
+          </ol>
           <div class="about">
             <h2>Just about me</h2>
             <ul>

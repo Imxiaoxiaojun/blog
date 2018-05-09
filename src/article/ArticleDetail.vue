@@ -1,14 +1,15 @@
 <template>
   <div class="col-lg-9 col-md-9 w_main_left">
     <div class="container">
-      <ol class="breadcrumb w_breadcrumb">
-        <li><a href="#">首页</a></li>
-        <li><a href="#">java</a></li>
-        <li class="active">{{article.title}}</li>
-        <span class="w_navbar_tip"></span>
-      </ol>
 
       <div class="col-lg-9 col-md-9 w_main_left" style="margin-top: -0.03%;">
+        <ol class="breadcrumb w_breadcrumb">
+          <li><a href="#">首页</a></li>
+          <li><a href="#">java</a></li>
+          <li class="active">{{article.title}}</li>
+          <span class="w_navbar_tip"></span>
+        </ol>
+
         <div class="panel panel-default">
           <div class="panel-body">
             <h2 class="c_titile">test</h2>

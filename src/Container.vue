@@ -2,24 +2,11 @@
     <div class="w_container">
         <div class="container">
             <div class="row w_main_row">
-              <div class="col-lg-9 col-md-9 w_main_left">
-                <!--滚动图开始-->
-                <div v-show="showBanner">
-                  <div class="panel panel-default">
-                    <banner v-show="showBanner"></banner>
-                  </div>
-                  <div class="panel panel-default contenttop">
-                    <a href="ArticleDetail.vue">
-                      <strong>博主置顶</strong>
-                      <h3 class="title"></h3>
-                      <p class="overView">个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中个人网站正在建设中。。。</p>
-                    </a>
-                  </div>
-                </div>
-                <component :article="article" :is="currentView"></component>
 
-              </div>
-                <!--右侧开始-->
+
+              <component :article="article" :is="containerView"></component>
+
+              <!--右侧开始-->
                 <div class="col-lg-3 col-md-3 w_main_right">
 
                     <div class="panel panel-default sitetip">
@@ -75,19 +62,18 @@
 
 <script>
     import HotTag from './Tag.vue'
-    import Article from './Article.vue'
+    import Article from './article/Article.vue'
     import HotArticle from './HotArticle.vue'
-    import ArticleDetail from './components/ArticleDetail.vue'
+    import IArticleDetail from './article/ArticleDetail.vue'
     import eventBus from './eventBus'
-    import Banner from './Banner.vue'
+    import IHome from './Home'
 
     export default {
+        props:["containerView"],
         components:{
             HotTag,
-            '_Article': Article,
-            HotArticle,
-            '_ArticleDetail': ArticleDetail,
-            Banner
+            'IArticle': Article,
+            HotArticle, IArticleDetail,IHome
         },
         data(){
           return {
@@ -96,15 +82,15 @@
             },
             article:{},
             apiLink: 'api/links/list',
-            currentView: '_Article',
+            // currentView: props['containerView'],
             apiArticle: 'api/article/detail/',
-            showBanner: true
+            // showBanner: true
           }
         },
         mounted:function(){
           // eventBus.$on(this.$parent.showBanner,this.showBanner = this.$parent.showBanner)
           // console.log("mounted,this showBanner",this.showBanner,"parent showBanner",this.$parent.showBanner)
-          this.showBanner = this.$parent.showBanner
+          // this.showBanner = this.$parent.showBanner
           this.getLinks();
           (function (T, h, i, n, k, P, a, g, e) {
             g = function () {
@@ -152,7 +138,8 @@
           },
           changeArticleDetail: function (id) {
             eventBus.$emit('activeId',1)
-            this.currentView = '_ArticleDetail'
+            // this.showBanner = false;
+            this.$parent.containerView = 'IArticleDetail'
             this.$axios.get(this.apiArticle + id).then((response) => {
               this.article = response.data;
             }).catch(function (response) {
