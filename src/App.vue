@@ -11,6 +11,7 @@
   import IFoot from './Foot.vue'
   import IBuilding from './building'
   import IAbout from './about/About'
+  import IComment from './comment/Comment'
   import eventBus from './eventBus'
 
   export default {
@@ -18,11 +19,11 @@
     data() {
       return {
         currentView: IContainer,
-        containerView: 'IHome'
+        containerView: 'IHome',
       }
     },
     components: {
-      IHeader, IContainer, IFoot, IBuilding, IAbout, eventBus
+      IHeader, IContainer, IFoot, IBuilding, IAbout, eventBus,IComment,
     },
     mounted: function () {
     },

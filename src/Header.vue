@@ -27,7 +27,7 @@
     data() {
       return {
         list: [{enName: 'IHome', cnName: '首页'}, {enName: 'IArticle', cnName: '文章'},
-          {enName: '', cnName: '成长'}, {enName: '', cnName: '留言'},
+          {enName: '', cnName: '成长'}, {enName: 'IComment', cnName: '留言'},
           {enName: '', cnName: '赞赏'}, {enName: 'IAbout', cnName: '关于'}],
         activeId: 0
       }
