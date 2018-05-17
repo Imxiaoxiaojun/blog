@@ -65,7 +65,7 @@
 
 <script>
   import Banner from './Banner.vue'
-  import pagination from './pagination'
+  import pagination from './common/pagination'
   import ArticleDetail from './article/ArticleDetail'
   import eventBus from './eventBus'
   export default {
