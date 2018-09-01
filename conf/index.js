@@ -14,7 +14,7 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report,
     proxyTable: {
       '/api': {
-        target: "http://localhost:8080",
+        target: "http://localhost/blog",
         pathRewrite: {"^/api" : "/"} //后面可以使重写的新路径，一般不做更改
       }
     }

@@ -11,7 +11,8 @@
   import IFoot from './Foot.vue'
   import IBuilding from './building'
   import IAbout from './about/About'
-  import IComment from './comment/Comment'
+  // import IComment from './comment/Comment'
+  import IComment from './comment/publish'
   import eventBus from './eventBus'
 
   export default {
